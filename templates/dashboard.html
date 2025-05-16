@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="dashboard" style="text-align:center; padding: 50px;">
+  <h2>Welcome, {{ user.username }}</h2>
+  <p style="font-size: 18px;">Choose an action below:</p>
+
+  <div style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+    <a href="{% url 'home' %}" class="btn"
+       style="padding: 12px 24px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">
+      📁 Upload File to IPFS
+    </a>
+
+    <a href="{% url 'download_file' %}" class="btn"
+       style="padding: 12px 24px; background-color: #2196F3; color: white; text-decoration: none; border-radius: 5px;">
+      ⬇️ Download File
+    </a>
+
+    <a href="{% url 'user_files' %}" class="btn"
+       style="padding: 12px 24px; background-color: #FF9800; color: white; text-decoration: none; border-radius: 5px;">
+      📄 View Uploaded Files
+    </a>
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="upload-section">
+  <div class="upload-wrapper">
+    <h1 class="upload-title">Upload File to IPFS</h1>
+    <p class="upload-subtitle">Securely encrypt, hash, and store your files with access control.</p>
+
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+      {% csrf_token %}
+
+      <!-- File Name -->
+      <div class="form-group">
+        {{ form.file_name }}
+        {% if form.file_name.errors %}
+          <span class="form-error">{{ form.file_name.errors|striptags }}</span>
+        {% endif %}
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-group">
+        {{ form.file }}
+        {% if form.file.errors %}
+          <span class="form-error">{{ form.file.errors|striptags }}</span>
+        {% endif %}
+      </div>
+
+      <!-- File Description -->
+      <div class="form-group">
+        {{ form.file_description }}
+        {% if form.file_description.errors %}
+          <span class="form-error">{{ form.file_description.errors|striptags }}</span>
+        {% endif %}
+      </div>
+
+      <!-- Departments Allowed -->
+      <div class="form-group">
+        <label for="id_departments_allowed">Allow Access to Departments:</label>
+        {{ form.departments_allowed }}
+        {% if form.departments_allowed.errors %}
+          <span class="form-error">{{ form.departments_allowed.errors|striptags }}</span>
+        {% endif %}
+      </div>
+
+      <!-- Submit -->
+      <div class="form-group submit-row">
+        <input type="submit" value="Upload File" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock %}

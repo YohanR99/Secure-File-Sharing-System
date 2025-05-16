@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="file-detail-container">
+  <div class="file-detail-card">
+    <h2 class="file-detail-title">📄 File Details</h2>
+
+    <div class="file-meta">
+      <p><strong>Original Name:</strong> {{ file.original_file_name }}</p>
+      <p><strong>File Description:</strong> {{ file.file_description }}</p>
+      <p><strong>Uploaded By:</strong> {{ file.uploaded_by.username }}</p>
+      <p><strong>Uploaded On:</strong> {{ file.created|date:"Y-m-d H:i" }}</p>
+      <p><strong>File Hash:</strong> {{ file.file_hash }}</p>
+      <p><strong>IPFS Hash:</strong> {{ file.ipfs_hash }}</p>
+      <p><strong>IPFS CID Size:</strong> {{ file.pin_size }} bytes</p>
+      <p><strong>Pin Timestamp:</strong> {{ file.pin_time_stamp }}</p>
+    </div>
+
+    <div class="file-detail-actions">
+      <a href="{% url 'download_file' file_id=file.file_id %}" class="download-btn">⬇ Download</a>
+      <a href="{% url 'user_files' %}" class="back-btn">← Back to My Files</a>
+    </div>
+  </div>
+</main>
+{% endblock %}

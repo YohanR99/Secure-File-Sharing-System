@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure File Sharing System</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'images/logo-image.png' %}" type="image/x-icon" />
+  <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+</head>
+
+<body class="job-review-body">
+
+<!-- Navbar -->
+<nav class="navbar custom-navbar">
+  <div class="navbar-container">
+
+    <!-- Left: Logo -->
+    <div class="navbar-left">
+      <a href="{% url 'landing' %}">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" class="navbar-logo">
+      </a>
+    </div>
+
+    <!-- Center: Navigation Links -->
+    <div class="navbar-center">
+      {% if user.is_authenticated %}
+		<a href="{% url 'landing' %}">Home</a>
+        <a href="{% url 'upload' %}">Upload</a>
+        <a href="{% url 'user_files' %}">My Files</a>
+        <a href="{% url 'shared_files' %}">Shared Files</a>
+      {% endif %}
+    </div>
+
+    <!-- Right: User Info or Login/Register -->
+    <div class="navbar-right">
+      {% if user.is_authenticated %}
+        <span class="navbar-user">Hello, {{ user.username }}</span>
+		<form method="POST" action="{% url 'logout' %}" class="navbar-logout-form">
+		{% csrf_token %}
+		<button type="submit" class="navbar-logout-btn">Logout</button>
+		</form>
+
+
+      {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+      {% endif %}
+    </div>
+
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main style="min-height: 80vh;">
+  {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="footer" style="background-color:#2c3e50; color:white; text-align:center; padding:15px 0;">
+  <p>&copy; 2025 Secure File Sharing System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

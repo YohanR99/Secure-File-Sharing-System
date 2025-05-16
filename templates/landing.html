@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="landing-container">
+  <section class="hero-section">
+    <img src="{% static 'images/logo-image.png' %}" alt="Logo" class="landing-logo">
+    <h1 class="landing-title">Secure File Sharing System</h1>
+    <p class="landing-tagline">A decentralized, encrypted, and access-controlled file-sharing platform.</p>
+    <div class="cta-buttons">
+      <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+      <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <h2>🔐 How It Works</h2>
+    <div class="features-steps">
+      <div class="step">
+        <h3>1. Authenticate</h3>
+        <p>Create an account or log in to start sharing files securely.</p>
+      </div>
+      <div class="step">
+        <h3>2. Upload</h3>
+        <p>Your files are hashed, encrypted with AES-256, and stored on IPFS.</p>
+      </div>
+      <div class="step">
+        <h3>3. Blockchain Logging</h3>
+        <p>Each upload is logged on a tamper-proof local blockchain for traceability.</p>
+      </div>
+      <div class="step">
+        <h3>4. Controlled Access</h3>
+        <p>Only authorized users/departments can decrypt and download your files.</p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

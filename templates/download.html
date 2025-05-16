@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="download-container">
+  <div class="download-card">
+    <div class="download-header">
+      <h2>🔐 Secure File Download</h2>
+      <a href="{% url 'landing' %}" class="download-close">
+        <img src="{% static 'images/icons/close.webp' %}" alt="Close">
+      </a>
+    </div>
+
+    <p class="download-description">You're about to download a file securely. Confirm the details below:</p>
+
+    {% if error %}
+      <div class="download-error">{{ error }}</div>
+    {% endif %}
+
+    <div class="download-details">
+      <div class="download-field">
+        <label>📄 File Name</label>
+        <input type="text" value="{{ file.original_file_name }}" disabled>
+      </div>
+
+      <div class="download-field">
+        <label>🔑 File Hash (SHA-256)</label>
+        <input type="text" value="{{ file.file_hash }}" disabled>
+      </div>
+
+      <div class="download-field">
+        <label>🌐 IPFS CID</label>
+        <input type="text" value="{{ file.ipfs_hash }}" disabled>
+      </div>
+    </div>
+
+    {% if ipfs_url %}
+    <div class="download-actions">
+      <a href="{{ ipfs_url }}" target="_blank" class="download-button">⬇️ Download File</a>
+    </div>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

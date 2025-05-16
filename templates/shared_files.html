@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="user-files-container">
+  <h2 class="user-files-title">📂 Files Shared With You</h2>
+
+  {% if files %}
+    <div class="file-card-grid">
+      {% for file in files %}
+        <div class="file-card">
+          <h3 class="file-name">{{ file.original_file_name }}</h3>
+          <p class="file-meta">
+            <strong>Shared by:</strong> {{ file.uploaded_by.username }}<br>
+            <strong>Uploaded:</strong> {{ file.pin_time_stamp }}<br>
+            <strong>File Hash:</strong> {{ file.file_hash|slice:":15" }}...
+          </p>
+		  <a href="{% url 'file_details' file_id=file.file_id %}" class="details-btn">📄 View Details</a>
+          <a href="{% url 'download_file' file_id=file.file_id %}" class="download-btn">⬇ Download</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="no-files-msg">📭 No files have been shared with you yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
